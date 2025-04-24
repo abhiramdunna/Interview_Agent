@@ -1,6 +1,7 @@
 from bson import ObjectId
 from fastapi import FastAPI, Depends, HTTPException, Query, status
 import re
+from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel,validator
 from fastapi.middleware.cors import CORSMiddleware
@@ -18,6 +19,10 @@ from config import (
 )
 
 app = FastAPI()
+
+@app.api_route("/", methods=["GET", "HEAD"])
+def root():
+    return JSONResponse(content={"status": "Backend running ✅"})
 
 # Update your CORS middleware to include your frontend's exact URL
 app.add_middleware(
