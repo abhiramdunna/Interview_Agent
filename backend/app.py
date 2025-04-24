@@ -14,7 +14,7 @@ import database
 from config import (
     SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES,
     SMTP_SERVER, SMTP_PORT, SMTP_USERNAME, SMTP_PASSWORD, EMAIL_FROM,
-    DEFAULT_ADMIN_EMAIL, DEFAULT_ADMIN_PASSWORD
+    DEFAULT_ADMIN_EMAIL, DEFAULT_ADMIN_PASSWORD,HOST
 )
 
 app = FastAPI()
@@ -22,10 +22,10 @@ app = FastAPI()
 # Update your CORS middleware to include your frontend's exact URL
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[HOST],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
-    allow_headers=["*"],
+    allow_headers=["Authorization", "Content-Type"],
     expose_headers=["*"],
     max_age=600  # 10 minutes
 )

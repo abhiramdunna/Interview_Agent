@@ -15,6 +15,7 @@ DB_NAME = os.getenv("DB_NAME", "interview_practice")
 username = quote_plus(os.getenv("MONGO_USERNAME"))  # Escape username
 password = quote_plus(os.getenv("MONGO_PASSWORD"))
 cluster = os.getenv("MONGO_CLUSTER")
+HOST = os.getenv("HOST")
 
 # SMTP Configuration for OTP (using Gmail)
 SMTP_SERVER = os.getenv("SMTP_SERVER")
