@@ -22,10 +22,10 @@ app = FastAPI()
 # Update your CORS middleware to include your frontend's exact URL
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
-    allow_headers=["Authorization", "Content-Type"],
+    allow_headers=["*"],
     expose_headers=["*"],
     max_age=600  # 10 minutes
 )
