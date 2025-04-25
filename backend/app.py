@@ -27,7 +27,13 @@ def root():
 # Update your CORS middleware to include your frontend's exact URL
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[HOST],
+    allow_origins=["http://localhost:3000",
+    "http://interviewagent.s3-website.ap-south-1.amazonaws.com",
+    "http://d2nh04ek5b25i9.cloudfront.net"
+    "https://d2nh04ek5b25i9.cloudfront.net"
+    "https://interviewagent.s3-website.ap-south-1.amazonaws.com",
+
+    ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["Authorization", "Content-Type"],
