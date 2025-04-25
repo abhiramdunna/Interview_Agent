@@ -25,14 +25,19 @@ def root():
     return JSONResponse(content={"status": "Backend running ✅"})
 
 # Update your CORS middleware to include your frontend's exact URL
+@app.api_route("/", methods=["GET", "HEAD"])
+def root():
+    return JSONResponse(content={"status": "Backend running ✅"})
+
+# Update your CORS middleware to include your frontend's exact URL
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000",
-    "http://interviewagent.s3-website.ap-south-1.amazonaws.com",
-    "http://d2nh04ek5b25i9.cloudfront.net"
-    "https://d2nh04ek5b25i9.cloudfront.net"
-    "https://interviewagent.s3-website.ap-south-1.amazonaws.com",
-
+    allow_origins=[
+        "http://localhost:3000",  # Local dev
+        "http://interviewagent.s3-website.ap-south-1.amazonaws.com",  # S3 HTTP
+        "http://d2nh04ek5b25i9.cloudfront.net",  # CloudFront HTTP
+        "https://d2nh04ek5b25i9.cloudfront.net",  # CloudFront HTTPS (you want to use this one in production)
+        "https://interviewagent.s3-website.ap-south-1.amazonaws.com",  # S3 HTTPS (for production)
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
@@ -40,6 +45,7 @@ app.add_middleware(
     expose_headers=["*"],
     max_age=600  # 10 minutes
 )
+
 # Models
 class Token(BaseModel):
     access_token: str
